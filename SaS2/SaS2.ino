@@ -99,6 +99,13 @@ void setup(){
  digitalWrite(RESET_PIN,LOW);
  lcd.init(); lcd.backlight();
  showStandby();
+  for(int i=0;i<4;i++){
+  slotCard[i]=EEPROM.read(20+i);
+
+  if(slotCard[i]>=CARD_COUNT){
+    slotCard[i]=0;
+  }
+}
 }
 
 void loop() {
