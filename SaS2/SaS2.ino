@@ -343,7 +343,8 @@ case SETUP_GROUP:
 groupCard[editSlot]=groupIndex;
 EEPROM.update(30+editSlot,groupIndex);
     lcd.clear();
-    lcd.print("Saved");
+   // lcd.print("Saved");
+    lcd.print(groupIndex);
     delay(700);
 
     lcd.clear();
