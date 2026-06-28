@@ -54,7 +54,7 @@ const int GROUP_AB_COUNT=8;
 int slotCard[4]={0,0,0,0};
 int editSlot=0;
 int groupIndex=0;
-
+int groupCard[4]={0,0,0,0};
 
 // ClickButton objects
 ClickButton btnStandby(BTN_STBY, LOW, CLICKBTN_PULLUP);
@@ -94,7 +94,13 @@ void showReady(int slot){
   lcd.setCursor(0,1);
 lcd.print("                ");   // șterge linia
 lcd.setCursor(0,1);
-lcd.print(cardList[slotCard[slot]]);
+if(slotCard[slot]==4)
+  lcd.print(groupAB[groupCard[slot]]);
+else
+  if(slotCard[slot]==4)
+  lcd.print(groupAB[groupCard[slot]]);
+else
+
  digitalWrite(LED_STBY,LOW);
  allSlotLedsOff();
  digitalWrite(LED_SLOT[slot],HIGH);
@@ -187,7 +193,7 @@ void loop() {
       }
 
       if(btnStandby.clicks==1){
-
+groupCard[editSlot]=groupIndex;
         EEPROM.update(EEPROM_A2_SLOT_ADDR,appleSlot);
 
         lcd.clear();
