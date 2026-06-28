@@ -27,11 +27,17 @@ int activeSlot=0;
 const int EEPROM_A2_SLOT_ADDR=10;
 int appleSlot=6;
 const char* cardList[]={
-  "Empty",
-  "Disk II",
-  "CF Card",
-  "SCSI"
+  "MyCard 1",
+  "MyCard 2",
+  "MyCard 3",
+  "MyCard 4",
+  "A-B",
+  "C-M",
+  "N-S",
+  "T-Z"
 };
+
+const int CARD_COUNT=8;
 
 const int CARD_COUNT=4;
 
@@ -241,24 +247,46 @@ void loop() {
         lcd.setCursor(0,1);
         lcd.print(cardList[slotCard[editSlot]]);
       }
+if(btnStandby.clicks==1){
 
-      if(btnStandby.clicks==1){
+  EEPROM.update(20+editSlot,slotCard[editSlot]);
 
-        EEPROM.update(20+editSlot,slotCard[editSlot]);
+  if(slotCard[editSlot] < 4){
 
-        lcd.clear();
-        lcd.print("Saved");
-        delay(700);
+    lcd.clear();
+    lcd.print("Saved");
+    delay(700);
 
-        lcd.clear();
-        lcd.setCursor(0,0);
-        lcd.print("Setup");
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("Setup");
 
-        lcd.setCursor(0,1);
-        lcd.print("A B C D");
+    lcd.setCursor(0,1);
+    lcd.print("A B C D");
 
-        state=SETUP_MENU;
-      }
+    state=SETUP_MENU;
+
+  }else{
+
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print(cardList[slotCard[editSlot]]);
+    lcd.setCursor(0,1);
+    lcd.print("Coming Soon");
+
+  }
+}
+     if(btnStandby.clicks==-1){
+
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Setup");
+
+  lcd.setCursor(0,1);
+  lcd.print("A B C D");
+
+  state=SETUP_MENU;
+} 
 
     break;
   }
