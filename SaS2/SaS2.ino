@@ -95,12 +95,9 @@ void showReady(int slot){
 lcd.print("                ");   // șterge linia
 lcd.setCursor(0,1);
 if(slotCard[slot]==4)
-  lcd.print(groupAB[groupCard[slot]]);
+    lcd.print(groupAB[groupCard[slot]]);
 else
-  if(slotCard[slot]==4)
-  lcd.print(groupAB[groupCard[slot]]);
-else
-
+    lcd.print(cardList[slotCard[slot]]);
  digitalWrite(LED_STBY,LOW);
  allSlotLedsOff();
  digitalWrite(LED_SLOT[slot],HIGH);
@@ -124,7 +121,11 @@ void setup(){
  showStandby();
   for(int i=0;i<4;i++){
   slotCard[i]=EEPROM.read(20+i);
+groupCard[i]=EEPROM.read(30+i);
 
+if(groupCard[i]>=GROUP_AB_COUNT){
+  groupCard[i]=0;
+}
   if(slotCard[i]>=CARD_COUNT){
     slotCard[i]=0;
   }
@@ -354,7 +355,8 @@ case SETUP_GROUP:
   }
 
   if(btnStandby.clicks==-1){
-
+groupCard[editSlot]=groupIndex;
+EEPROM.update(30+editSlot,groupIndex);
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("Setup");
