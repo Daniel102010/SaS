@@ -39,7 +39,7 @@ const char* cardList[]={
 
 const int CARD_COUNT=8;
 
-const int CARD_COUNT=4;
+//const int CARD_COUNT=4;
 
 int slotCard[4]={0,0,0,0};
 int editSlot=0;
@@ -251,7 +251,7 @@ if(btnStandby.clicks==1){
 
   EEPROM.update(20+editSlot,slotCard[editSlot]);
 
-  if(slotCard[editSlot] < 4){
+  if(slotCard[editSlot] < 3){
 
     lcd.clear();
     lcd.print("Saved");
