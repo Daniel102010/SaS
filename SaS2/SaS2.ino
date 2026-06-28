@@ -340,7 +340,8 @@ case SETUP_GROUP:
   }
 
   if(btnStandby.clicks==1){
-
+groupCard[editSlot]=groupIndex;
+EEPROM.update(30+editSlot,groupIndex);
     lcd.clear();
     lcd.print("Saved");
     delay(700);
@@ -355,8 +356,7 @@ case SETUP_GROUP:
   }
 
   if(btnStandby.clicks==-1){
-groupCard[editSlot]=groupIndex;
-EEPROM.update(30+editSlot,groupIndex);
+
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("Setup");
