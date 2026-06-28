@@ -72,8 +72,12 @@ void showReady(int slot){
  lcd.setCursor(0,0);
  lcd.print("Slot ");
  lcd.print(char('A'+slot));
- lcd.setCursor(0,1);
- lcd.print("Ready");
+ //lcd.setCursor(0,1);
+ //lcd.print("Ready");
+  lcd.setCursor(0,1);
+lcd.print("                ");   // șterge linia
+lcd.setCursor(0,1);
+lcd.print(cardList[slotCard[slot]]);
  digitalWrite(LED_STBY,LOW);
  allSlotLedsOff();
  digitalWrite(LED_SLOT[slot],HIGH);
