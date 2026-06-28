@@ -284,8 +284,9 @@ if(btnStandby.clicks==1){
 
     state=SETUP_MENU;
 }else{
-
-  groupIndex=0;
+ 
+    groupIndex=groupCard[editSlot];
+ 
 
   lcd.clear();
   lcd.setCursor(0,0);
