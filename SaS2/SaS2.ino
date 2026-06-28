@@ -39,8 +39,6 @@ const char* cardList[]={
 
 const int CARD_COUNT=8;
 
-//const int CARD_COUNT=4;
-
 int slotCard[4]={0,0,0,0};
 int editSlot=0;
 
