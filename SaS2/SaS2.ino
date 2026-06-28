@@ -262,7 +262,7 @@ if(btnStandby.clicks==1){
 
   EEPROM.update(20+editSlot,slotCard[editSlot]);
 
-  if(slotCard[editSlot] < 3){
+  if(slotCard[editSlot] < 4){
 
     lcd.clear();
     lcd.print("Saved");
@@ -276,16 +276,21 @@ if(btnStandby.clicks==1){
     lcd.print("A B C D");
 
     state=SETUP_MENU;
+}else{
 
-  }else{
+  groupIndex=0;
 
-    lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print(cardList[slotCard[editSlot]]);
-    lcd.setCursor(0,1);
-    lcd.print("Coming Soon");
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(cardList[slotCard[editSlot]]);
 
-  }
+  lcd.setCursor(0,1);
+  lcd.print(groupAB[groupIndex]);
+
+  state=SETUP_GROUP;
+
+}
+
 }
      if(btnStandby.clicks==-1){
 
@@ -300,5 +305,59 @@ if(btnStandby.clicks==1){
 } 
 
     break;
+    //=================================================
+case SETUP_GROUP:
+
+  if(btnA.clicks==1){
+
+    groupIndex--;
+    if(groupIndex<0)
+      groupIndex=GROUP_AB_COUNT-1;
+
+    lcd.setCursor(0,1);
+    lcd.print("                ");
+    lcd.setCursor(0,1);
+    lcd.print(groupAB[groupIndex]);
+  }
+
+  if(btnB.clicks==1){
+
+    groupIndex++;
+    if(groupIndex>=GROUP_AB_COUNT)
+      groupIndex=0;
+
+    lcd.setCursor(0,1);
+    lcd.print("                ");
+    lcd.setCursor(0,1);
+    lcd.print(groupAB[groupIndex]);
+  }
+
+  if(btnStandby.clicks==1){
+
+    lcd.clear();
+    lcd.print("Saved");
+    delay(700);
+
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("Setup");
+    lcd.setCursor(0,1);
+    lcd.print("A B C D");
+
+    state=SETUP_MENU;
+  }
+
+  if(btnStandby.clicks==-1){
+
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("Setup");
+    lcd.setCursor(0,1);
+    lcd.print("A B C D");
+
+    state=SETUP_MENU;
+  }
+
+  break;
   }
 }
