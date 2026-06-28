@@ -13,15 +13,15 @@ const int LED_SLOT[4]={8,9,10,11};
 const int RELAY[8]={A0,A1,A2,A3,A6,A7,12,13};
 const int RESET_PIN=1;
 const int EEPROM_ADDR=0;
-
-//enum SystemState { STANDBY, ACTIVE, SETUP };
 enum SystemState {
   STANDBY,
   ACTIVE,
   SETUP_SLOT,
   SETUP_MENU,
-  SETUP_CARD
+  SETUP_CARD,
+  SETUP_GROUP
 };
+
 SystemState state=STANDBY;
 int activeSlot=0;
 const int EEPROM_A2_SLOT_ADDR=10;
@@ -38,9 +38,22 @@ const char* cardList[]={
 };
 
 const int CARD_COUNT=8;
+const char* groupAB[]={
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "B1",
+  "B2",
+  "B3",
+  "B4"
+};
+
+const int GROUP_AB_COUNT=8;
 
 int slotCard[4]={0,0,0,0};
 int editSlot=0;
+int groupIndex=0;
 
 
 // ClickButton objects
